@@ -6,7 +6,8 @@ class Form extends Component {
     super()
     this.state = {
       name: '',
-      dogOrCat:''
+      dogOrCat:'',
+      error: ''
     }
   }
 
@@ -16,8 +17,16 @@ class Form extends Component {
 
   submit = (event) => {
     event.preventDefault();
-    this.props.getInfo({name: this.state.name, neededFactType: this.state.dogOrCat});
-    this.setState({name : '', dogOrCat: ''});
+    if(!this.state.name) {
+      this.setState({error: 'Please enter your name 🥺'});
+    } else {
+      this.props.getInfo({name: this.state.name, neededFactType: this.state.dogOrCat});
+      this.setState({name : '', dogOrCat: '', error: ''});
+    }
+  }
+
+  handleRadio = (event) => {
+    this.setState({dogOrCat: event.target.id})
   }
 
   render() {
@@ -29,14 +38,27 @@ class Form extends Component {
           name="name"
           value={this.state.name} 
           placeholder="name" 
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+          required>
         </input>
         <h2>dog or cat fact?</h2>
         <label htmlFor="dog">dog</label>
-        <input type="radio" name="dogOrCat" id="dog" value="dog" onChange={this.handleChange}></input>
+        <input type="radio" 
+          name="dogOrCat" 
+          id="dog" 
+          value={this.state.dogOrCat} 
+          checked={this.state.dogOrCat === 'dog'}
+          onChange={this.handleRadio}></input>
         <label htmlFor="cat">cat</label>
-        <input type="radio" name="dogOrCat" id="cat" value="cat" onChange={this.handleChange}></input>
+        <input 
+          type="radio" 
+          name="dogOrCat" 
+          id="cat" 
+          value={this.state.dogOrCat}
+          checked={this.state.dogOrCat === 'cat'}
+          onChange={this.handleRadio}></input>
         <button onClick={this.submit}>submit</button>
+        {this.state.error && <p>{`${this.state.error}`}</p>}
       </form>
     )
   }
