@@ -15,16 +15,21 @@ class App extends Component {
   }
 
   getInfo = (info) => {
-    this.setState(info)
+    this.setState({name: '', neededFactType: ''});
+    this.setState(info);
+  }
+
+  goBack = () => {
+    this.setState({name: '', neededFactType: ''});
   }
 
   render() {
     return (
       <div className="App">
         <h1>What kind of fact do you need?</h1>
-        <Form getInfo={this.getInfo}/>
-        {this.state.neededFactType === 'cat' ? <CatFact /> : null}
-        {this.state.neededFactType === 'dog' ? <DogFact /> : null}
+        {!this.state.name && <Form getInfo={this.getInfo}/>}
+        {this.state.neededFactType === 'cat' && <CatFact name={this.state.name} goBack={this.goBack}/>}
+        {this.state.neededFactType === 'dog' && <DogFact name={this.state.name} goBack={this.goBack}/>}
       </div>
     );
   }
