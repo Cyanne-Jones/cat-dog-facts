@@ -7,23 +7,27 @@ class DogFact extends Component {
     super()
     this.state = {
       fact: '',
-      image: ''
+      image: '',
+      loading: ''
     }
   }
 
   componentDidMount = () => {
+    this.setState({loading: true})
     const randomFact = facts[Math.floor(Math.random() * facts.length)]
     this.setState({fact: randomFact.fact})
     fetch('https://dog.ceo/api/breeds/image/random')
       .then(response => response.json())
       .then(response => this.setState({image: response.message}))
       .catch(error => console.log(error))
+      this.setState({loading: true})
   }
 
   render() {
     return (
       <div>
         <h2>{`Hi, ${this.props.name}! Here's your dog fact!`}</h2>
+        {this.state.loaging && <p>loading...</p>}
         <p>{`${this.state.fact}`}</p>
         <img src={this.state.image} alt="cute puppy"/>
         <button onClick={this.props.goBack}>back</button>
