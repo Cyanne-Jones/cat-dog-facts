@@ -1,0 +1,81 @@
+.App {
+  background-color: cyan;
+  height: 100vh;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+
+.title {
+  margin: 0px;
+  text-align: center;
+  background-color: teal;
+  width: 10em;
+  border-radius: 1em;
+  padding: 0.5em;
+}
+
+form {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  text-align: center;
+}
+
+.submit-button,
+.back-button {
+  border: none;
+  background-color: #edadea;
+  height: 2em;
+  border-radius: 2em;
+  margin-top: 2em;
+  width: 9em;
+}
+
+.submit-button:hover,
+.back-button:hover {
+  background-color: #dc62a7;
+  cursor: pointer;
+}
+
+.animal-fax {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-and-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fact-text {
+  padding: 2em;
+  background-color: #dc62a7;
+  margin: 3em;
+  border-radius: 2em;
+  width: 80%;
+}
+
+.animal-photo {
+  width: 90%;
+  border-radius: 2em;
+}
+
+@media screen and (min-width: 70em) {
+
+  .image-and-text {
+    flex-direction: row;
+  }
+
+  .animal-photo {
+    width: 60%;
+  }
+}

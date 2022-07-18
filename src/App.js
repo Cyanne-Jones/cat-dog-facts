@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>What kind of fact do you need?</h1>
+        <h1 className="title">What kind of fact do you need?</h1>
         {!this.state.name && <Form getInfo={this.getInfo}/>}
         {this.state.neededFactType === 'cat' && <CatFact name={this.state.name} goBack={this.goBack}/>}
         {this.state.neededFactType === 'dog' && <DogFact name={this.state.name} goBack={this.goBack}/>}

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import facts from "../data/dogFacts"
+import '../App.css';
 
 class DogFact extends Component {
 
@@ -8,7 +9,7 @@ class DogFact extends Component {
     this.state = {
       fact: '',
       image: '',
-      loading: ''
+      loading: '',
     }
   }
 
@@ -20,17 +21,19 @@ class DogFact extends Component {
       .then(response => response.json())
       .then(response => this.setState({image: response.message}))
       .catch(error => console.log(error))
-      this.setState({loading: true})
+      this.setState({loading: false})
   }
 
   render() {
     return (
-      <div>
-        <h2>{`Hi, ${this.props.name}! Here's your dog fact!`}</h2>
-        {this.state.loaging && <p>loading...</p>}
-        <p>{`${this.state.fact}`}</p>
-        <img src={this.state.image} alt="cute puppy"/>
-        <button onClick={this.props.goBack}>back</button>
+      <div className="animal-fax">
+        <h2 className="user-greeting">{`Hi, ${this.props.name}! Here's your dog fact!`}</h2>
+        {this.state.loading && <p>loading...</p>}
+        <div className="image-and-text">
+        <img className="animal-photo" src={this.state.image} alt="cute puppy"/>
+        <p className="fact-text">{`${this.state.fact}`}</p>
+        </div>
+        <button className="back-button" onClick={this.props.goBack}>back</button>
       </div>
     )
   }

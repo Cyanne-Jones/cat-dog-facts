@@ -1,4 +1,5 @@
-import React,  {Component} from "react"
+import React, { Component } from "react"
+import '../App.css';
 
 class Form extends Component {
 
@@ -12,7 +13,8 @@ class Form extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({[event.target.name] : event.target.value})
+    this.setState({
+      [event.target.name] : event.target.value})
   }
 
   submit = (event) => {
@@ -32,23 +34,28 @@ class Form extends Component {
   render() {
     return (
       <form>
-        <label htmlFor="name">Name</label>
+        <div className="input-group">
+        <label htmlFor="name">Name</label> <br/>
         <input 
           type="text" 
           name="name"
           value={this.state.name} 
           placeholder="name" 
           onChange={this.handleChange}
-          required>
-        </input>
+          className="name-input">
+        </input></div>
         <h2>dog or cat fact?</h2>
+        <div className="input-group">
         <label htmlFor="dog">dog</label>
         <input type="radio" 
           name="dogOrCat" 
           id="dog" 
           value={this.state.dogOrCat} 
           checked={this.state.dogOrCat === 'dog'}
-          onChange={this.handleRadio}></input>
+          onChange={this.handleRadio}
+          className="radio-input"></input></div>
+
+<div className="input-group">
         <label htmlFor="cat">cat</label>
         <input 
           type="radio" 
@@ -56,8 +63,9 @@ class Form extends Component {
           id="cat" 
           value={this.state.dogOrCat}
           checked={this.state.dogOrCat === 'cat'}
-          onChange={this.handleRadio}></input>
-        <button onClick={this.submit}>submit</button>
+          onChange={this.handleRadio}
+          className="radio-input"></input></div>
+        <button className="submit-button" onClick={this.submit}>submit</button>
         {this.state.error && <p>{`${this.state.error}`}</p>}
       </form>
     )
