@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import '../App.css';
 
 class CatFact extends Component {
 
@@ -26,12 +27,14 @@ class CatFact extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{`Hi, ${this.props.name}! Here's your cat fact!`}</h2>
-        {this.state.loaging && <p>loading...</p>}
-        <p>{`${this.state.fact}`}</p>
-        <img src={this.state.image} alt="cute kitty"/>
-        <button onClick={this.props.goBack}>back</button>
+      <div className="animal-fax">
+        <h2 className="user-greeting">{`Hi, ${this.props.name}! Here's your cat fact!`}</h2>
+        {this.state.loading && <p>loading...</p>}
+        <div className="image-and-text">
+        <img className="animal-photo" src={this.state.image} alt="cute kitty"/>
+        <p className="fact-text" >{`${this.state.fact}`}</p>
+        </div>
+        <button className="back-button" onClick={this.props.goBack}>back</button>
       </div>
     )
   }
